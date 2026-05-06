@@ -88,7 +88,7 @@ export default function ImageUploadZone({
     [processFiles]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     accept: {
       'image/jpeg': ['.jpg', '.jpeg'],
@@ -98,6 +98,7 @@ export default function ImageUploadZone({
     },
     maxFiles: maxImages - images.length,
     disabled: images.length >= maxImages,
+    noClick: true,
   });
 
   const removeImage = (index: number) => {
@@ -166,7 +167,10 @@ export default function ImageUploadZone({
             </button>
             <button
               type="button"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                open();
+              }}
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface border border-border
                          text-text font-medium text-sm hover:border-primary/50 transition-all min-h-[44px] cursor-pointer"
             >
