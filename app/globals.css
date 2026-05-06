@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ===== LIGHT MODE (Warm Harvest, Energetic) ===== */
+:root {
+  --color-primary:     #FB6107;
+  --color-secondary:   #FBB02D;
+  --color-highlight:   #F3DE2C;
+  --color-success:     #7CB518;
+  --color-deep:        #5C8001;
+  --color-bg:          #FFFDF5;
+  --color-surface:     #FFF8E8;
+  --color-text:        #1A1200;
+  --color-text-muted:  #4A3800;
+  --color-border:      #E8DFC0;
+  --color-primary-rgb: 251, 97, 7;
+  --color-surface-rgb: 255, 248, 232;
+}
+
+/* ===== DARK MODE (Earthy, Intimate) ===== */
+[data-theme="dark"] {
+  --color-primary:     #D4822A;
+  --color-secondary:   #C47252;
+  --color-highlight:   #2A8B5A;
+  --color-success:     #4A7A3A;
+  --color-deep:        #3A6A2A;
+  --color-bg:          #19180A;
+  --color-surface:     #252410;
+  --color-text:        #F5EDD0;
+  --color-text-muted:  #B8A878;
+  --color-border:      #3A3820;
+  --color-primary-rgb: 212, 130, 42;
+  --color-surface-rgb: 37, 36, 16;
+}
+
+/* ===== TAILWIND v4 THEME TOKENS ===== */
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-highlight: var(--color-highlight);
+  --color-success: var(--color-success);
+  --color-deep: var(--color-deep);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-border: var(--color-border);
+
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ===== SELECTION COLORS ===== */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.glass {
+  background: rgba(var(--color-surface-rgb), 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== INGREDIENT CATEGORY COLORS ===== */
+.chip-protein {
+  background-color: rgba(251, 97, 7, 0.15);
+  color: #FB6107;
+  border: 1px solid rgba(251, 97, 7, 0.3);
+}
+
+.chip-vegetable {
+  background-color: rgba(124, 181, 24, 0.15);
+  color: #5C8001;
+  border: 1px solid rgba(124, 181, 24, 0.3);
+}
+
+.chip-fruit {
+  background-color: rgba(243, 222, 44, 0.15);
+  color: #9A8A00;
+  border: 1px solid rgba(243, 222, 44, 0.3);
+}
+
+.chip-grain {
+  background-color: rgba(251, 176, 45, 0.15);
+  color: #B07E00;
+  border: 1px solid rgba(251, 176, 45, 0.3);
+}
+
+.chip-dairy {
+  background-color: rgba(243, 222, 44, 0.2);
+  color: #8A7A00;
+  border: 1px solid rgba(243, 222, 44, 0.3);
+}
+
+.chip-fat {
+  background-color: rgba(251, 176, 45, 0.15);
+  color: #B07E00;
+  border: 1px solid rgba(251, 176, 45, 0.3);
+}
+
+.chip-spice {
+  background-color: rgba(180, 80, 40, 0.15);
+  color: #B45028;
+  border: 1px solid rgba(180, 80, 40, 0.3);
+}
+
+.chip-condiment {
+  background-color: rgba(140, 100, 60, 0.15);
+  color: #8C643C;
+  border: 1px solid rgba(140, 100, 60, 0.3);
+}
+
+.chip-other {
+  background-color: rgba(100, 100, 100, 0.12);
+  color: var(--color-text-muted);
+  border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+[data-theme="dark"] .chip-protein {
+  background-color: rgba(212, 130, 42, 0.2);
+  color: #E8A050;
+  border-color: rgba(212, 130, 42, 0.4);
+}
+
+[data-theme="dark"] .chip-vegetable {
+  background-color: rgba(74, 122, 58, 0.25);
+  color: #8BC070;
+  border-color: rgba(74, 122, 58, 0.4);
+}
+
+[data-theme="dark"] .chip-fruit {
+  background-color: rgba(42, 139, 90, 0.2);
+  color: #5AB88A;
+  border-color: rgba(42, 139, 90, 0.4);
+}
+
+[data-theme="dark"] .chip-grain {
+  background-color: rgba(196, 114, 82, 0.2);
+  color: #D4956A;
+  border-color: rgba(196, 114, 82, 0.4);
+}
+
+[data-theme="dark"] .chip-dairy {
+  background-color: rgba(184, 168, 120, 0.2);
+  color: #C8B888;
+  border-color: rgba(184, 168, 120, 0.3);
+}
+
+[data-theme="dark"] .chip-fat {
+  background-color: rgba(196, 114, 82, 0.2);
+  color: #D4956A;
+  border-color: rgba(196, 114, 82, 0.3);
+}
+
+[data-theme="dark"] .chip-spice {
+  background-color: rgba(196, 100, 60, 0.2);
+  color: #D4804A;
+  border-color: rgba(196, 100, 60, 0.3);
+}
+
+[data-theme="dark"] .chip-condiment {
+  background-color: rgba(160, 120, 80, 0.2);
+  color: #C8A870;
+  border-color: rgba(160, 120, 80, 0.3);
+}
+
+[data-theme="dark"] .chip-other {
+  background-color: rgba(184, 168, 120, 0.15);
+  color: var(--color-text-muted);
+  border-color: rgba(184, 168, 120, 0.25);
+}
+
+/* ===== PULSE ANIMATION ===== */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(var(--color-primary-rgb), 0); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* ===== SKELETON LOADER ===== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-border) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
