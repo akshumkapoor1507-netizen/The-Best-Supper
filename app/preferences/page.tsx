@@ -60,18 +60,34 @@ export default function PreferencesPage() {
   const router = useRouter();
   const { userPreferences, identifiedIngredients, actions } = useAppStore();
 
+  const toggleHealthGoal = (goal: HealthGoal) => {
+    const current = userPreferences.healthGoals;
+    const updated = current.includes(goal)
+      ? current.filter((g) => g !== goal)
+      : [...current, goal];
+    actions.setPreferences({ healthGoals: updated });
+  };
+
+  const toggleComplexity = (c: MealComplexity) => {
+    const current = userPreferences.complexities;
+    const updated = current.includes(c)
+      ? current.filter((x) => x !== c)
+      : [...current, c];
+    actions.setPreferences({ complexities: updated });
+  };
+
   const handleSubmit = () => {
     if (identifiedIngredients.length === 0) {
       toast.error('No ingredients found. Please scan your kitchen first.');
       router.push('/scan');
       return;
     }
-    if (!userPreferences.healthGoal) {
-      toast.error('Please select a health goal');
+    if (userPreferences.healthGoals.length === 0) {
+      toast.error('Please select at least one health goal');
       return;
     }
-    if (!userPreferences.complexity) {
-      toast.error('Please select meal complexity');
+    if (userPreferences.complexities.length === 0) {
+      toast.error('Please select at least one meal complexity');
       return;
     }
     router.push('/results');
@@ -128,7 +144,7 @@ export default function PreferencesPage() {
           className="bg-surface border border-border rounded-3xl p-6"
         >
           <h2 className="font-display text-lg font-bold text-text mb-4">
-            🎯 Health Goal
+            🎯 Health Goal <span className="text-sm font-normal text-text-muted">(multi-select)</span>
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {healthGoals.map((goal) => (
@@ -136,8 +152,8 @@ export default function PreferencesPage() {
                 key={goal.value}
                 icon={goal.icon}
                 label={goal.label}
-                selected={userPreferences.healthGoal === goal.value}
-                onClick={() => actions.setPreferences({ healthGoal: goal.value })}
+                selected={userPreferences.healthGoals.includes(goal.value)}
+                onClick={() => toggleHealthGoal(goal.value)}
               />
             ))}
           </div>
@@ -151,7 +167,7 @@ export default function PreferencesPage() {
           className="bg-surface border border-border rounded-3xl p-6"
         >
           <h2 className="font-display text-lg font-bold text-text mb-4">
-            ⏱️ Meal Complexity
+            ⏱️ Meal Complexity <span className="text-sm font-normal text-text-muted">(multi-select)</span>
           </h2>
           <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
             {complexities.map((c) => (
@@ -159,8 +175,8 @@ export default function PreferencesPage() {
                 <FilterCard
                   icon={c.icon}
                   label={c.label}
-                  selected={userPreferences.complexity === c.value}
-                  onClick={() => actions.setPreferences({ complexity: c.value })}
+                  selected={userPreferences.complexities.includes(c.value)}
+                  onClick={() => toggleComplexity(c.value)}
                   size="sm"
                 />
               </div>

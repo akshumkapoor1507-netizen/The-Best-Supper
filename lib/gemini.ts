@@ -55,12 +55,12 @@ export function buildRecipePrompt(
     'fine-dining': 'Fine Dining (2+ hrs)',
   };
 
-  const healthGoal = preferences.healthGoal
-    ? healthGoalLabels[preferences.healthGoal] || preferences.healthGoal
+  const healthGoal = preferences.healthGoals.length > 0
+    ? preferences.healthGoals.map(g => healthGoalLabels[g] || g).join(', ')
     : 'No preference';
 
-  const complexity = preferences.complexity
-    ? complexityLabels[preferences.complexity] || preferences.complexity
+  const complexity = preferences.complexities.length > 0
+    ? preferences.complexities.map(c => complexityLabels[c] || c).join(', ')
     : 'No preference';
 
   const occasions = preferences.occasions.length > 0

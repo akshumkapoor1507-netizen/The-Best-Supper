@@ -4,8 +4,8 @@ import { create } from 'zustand';
 import type { AppState, Ingredient, Recipe, UserPreferences } from '@/types';
 
 const defaultPreferences: UserPreferences = {
-  healthGoal: null,
-  complexity: null,
+  healthGoals: [],
+  complexities: [],
   occasions: [],
   servings: 2,
   mealFormat: 'single-dish',

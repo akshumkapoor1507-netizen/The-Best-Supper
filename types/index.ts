@@ -103,8 +103,8 @@ export type DietaryRestriction =
 export type MealFormat = 'single-dish' | 'full-spread';
 
 export interface UserPreferences {
-  healthGoal: HealthGoal | null;
-  complexity: MealComplexity | null;
+  healthGoals: HealthGoal[];
+  complexities: MealComplexity[];
   occasions: Occasion[];
   servings: number;
   mealFormat: MealFormat;
